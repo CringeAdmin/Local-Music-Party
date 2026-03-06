@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Music Party</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Onder" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!--  HEADER  -->
+<header>
+  <nav class="nav">
+    <a href="#" class="brand">
+      <div class="logo">🎵</div>
+      <span class="brand-name">Local Music Party</span>
+    </a>
+    <div class="navlinks">
+      <a href="#what-inside">Что внутри</a>
+      <a href="#for-organizer">Для организатора</a>
+      <a href="#for-user">Для пользователя</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacts">Контакты</a>
+    </div>
+    <a href="#download" class="btn">Скачать приложение</a>
+    <button class="burger" id="burgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<nav class="mob-nav" id="mobNav">
+  <a href="#what-inside">Что внутри</a>
+  <a href="#for-organizer">Для организатора</a>
+  <a href="#for-user">Для пользователя</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contacts">Контакты</a>
+  <a href="#download" class="btn">Скачать приложение</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a" alt="Концерт" />
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Мобильное приложение для поиска локальных мероприятий;</h1>
+      <p class="hero-sub">
+        Не пропусти ни одного концерта в своём городе.<br>
+        Открой для себя новых артистов и планируй музыкальные вечеринки заранее.
+      </p>
+      <div class="hero-btns">
+        <a href="#" class="btn btn-lg">Скачать в App Store</a>
+        <a href="#" class="btn btn-ghost btn-lg">Скачать в Google Play</a>
+      </div>
+      <p class="note">Доступно бесплатно. Без рекламы и скрытых платежей.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="what-section" id="what-inside">
+  <div class="what-inner">
+    <div class="what-text">
+      <h2>Что именно есть<br>в приложении</h2>
+      <ul class="blist">
+        <li>Афиша музыкальных мероприятий</li>
+        <li>Подборка концертов локальных артистов</li>
+        <li>Анонсы концертов артистов</li>
+        <li>Поиск по городам, жанрам, площадкам и исполнителям</li>
+        <li>Интерактивная карта мероприятий</li>
+      </ul>
+    </div>
+    <!-- Hidden on mobile -->
+    <div class="phone-col desktop-only">
+      <button class="phone-arrow" id="phonePrev" aria-label="Назад">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M9 2L4 7l5 5" stroke="#e0defb" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </button>
+      <div class="phone-wrap">
+        <div class="phone-status"><span>9:41</span><span>●●●</span></div>
+        <img id="phoneImg" src="https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a" alt="Скриншот приложения" />
+      </div>
+      <button class="phone-arrow" id="phoneNext" aria-label="Вперёд">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M5 2l5 5-5 5" stroke="#e0defb" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-inner">
+    <h2>Как это работает?</h2>
+    <p class="section-sub">Три шага, чтобы больше никогда не пропускать интересные концерты в своём городе.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-top">
+          <div class="step-n">1</div>
+          <div class="step-t">Выбирай город и жанр</div>
+        </div>
+        <p>Фильтруй события по городам, жанрам и площадкам. От квартирников до фестивалей.</p>
+      </div>
+      <div class="step">
+        <div class="step-top">
+          <div class="step-n">2</div>
+          <div class="step-t">Следи за артистами</div>
+        </div>
+        <p>Подписывайся на любимых локальных артистов и получай анонсы их концертов.</p>
+      </div>
+      <div class="step">
+        <div class="step-top">
+          <div class="step-n">3</div>
+          <div class="step-t">Планируй вечеринки</div>
+        </div>
+        <p>Добавляй события в избранное, делись с друзьями и строй свои музыкальные выходные.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events-section">
+  <div class="events-head section-inner">
+    <h2>Мероприятия</h2>
+    <p class="section-sub">Живые концерты, атмосферные вечера и гибкое комьюнити — всё это в одном месте.</p>
+  </div>
+  <div class="slider-container">
+    <button class="slider-btn slider-btn-prev" id="sliderPrev" aria-label="Предыдущий слайд">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M12.5 5L7.5 10l5 5"/>
+      </svg>
+    </button>
+    <div class="slider-wrap">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slide slide-first">
+          <img src="https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a" alt="Концерты" draggable="false" />
+          <div class="slide-title">Мероприятия с концертами</div>
+          <p class="slide-desc">Актуальные концерты локальных и уже заметных групп — от маленьких сцен до фестивалей.</p>
+        </div>
+        <div class="slide">
+          <img src="https://www.figma.com/api/mcp/asset/ca5e344f-af63-4873-a092-caefd5446329" alt="Комьюнити" draggable="false" />
+          <div class="slide-title">Гибкое комьюнити</div>
+          <p class="slide-desc">Актуальные концерты локальных и уже заметных групп — от маленьких сцен до фестивалей.</p>
+        </div>
+        <div class="slide">
+          <img src="https://www.figma.com/api/mcp/asset/1bf5ce68-3417-4876-81ba-1cbdd35afb91" alt="Вечерние сеты" draggable="false" />
+          <div class="slide-title">Вечерние сеты и оркестры</div>
+          <p class="slide-desc">Актуальные концерты локальных и уже заметных групп — от маленьких сцен до фестивалей.</p>
+        </div>
+        <div class="slide">
+          <img src="https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a" alt="Фестивали" draggable="false" />
+          <div class="slide-title">Открытые фестивали</div>
+          <p class="slide-desc">Большие летние опен-эйры и камерные вечера под открытым небом.</p>
+        </div>
+      </div>
+    </div>
+    <button class="slider-btn slider-btn-next" id="sliderNext" aria-label="Следующий слайд">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M7.5 5l5 5-5 5"/>
+      </svg>
+    </button>
+  </div>
+  <div class="slider-dots" id="sliderDots">
+    <div class="dot active" data-index="0"></div>
+    <div class="dot" data-index="1"></div>
+    <div class="dot" data-index="2"></div>
+    <div class="dot" data-index="3"></div>
+  </div>
+</section>
+
+<!-- EARN -->
+<section class="earn-section">
+  <div class="earn-card">
+    <div class="earn-text">
+      <h2 class="earn-title">Зарабатывайте, посещая рестораны и заказывая доставку</h2>
+      <p class="earn-desc">
+        Получайте <span class="earn-hl">+10% от каждого заказа</span> на ваш счёт в приложении.
+        Ходите на концерты, заказывайте еду и накапливайте бонусы,
+        которые можно потратить на билеты и мерч.
+      </p>
+    </div>
+    <div class="earn-img">
+      <img src="https://www.figma.com/api/mcp/asset/06844dea-4191-490c-9acf-9066bd5196a5" alt="Экран приложения" />
+    </div>
+  </div>
+</section>
+
+<!-- FOR ORGANIZER -->
+<section class="for-section" id="for-organizer">
+  <div class="for-inner">
+    <!-- Hidden on mobile -->
+    <div class="for-phone desktop-only">📱</div>
+    <div class="for-text">
+      <h2>Для организатора</h2>
+      <ul class="blist" style="margin-bottom:24px;">
+        <li>Ты сам предлагаешь мероприятие через наш сайт, после проверки модератором анонс появится в приложении.</li>
+        <li>Стоимость размещения — бесплатна.</li>
+        <li>Ты можешь добавить своё мероприятие уже сейчас и собрать новую аудиторию.</li>
+      </ul>
+      <a href="#" class="btn btn-lg">Добавить мероприятие</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOR USER -->
+<section class="for-section" id="for-user">
+  <div class="for-inner flipped">
+    <div class="for-text">
+      <h2 class="pink">Для пользователя</h2>
+      <p class="for-note">Пользователь приложения Local Music Party:</p>
+      <ul class="blist grad" style="margin-bottom:24px;">
+        <li>Не пропустит концерт любимого исполнителя.</li>
+        <li>Сможет открыть для себя новые музыкальные мероприятия.</li>
+        <li>Откроет для себя новых, набирающих популярность артистов и группы.</li>
+        <li>Сможет запланировать поход на мероприятие заранее.</li>
+      </ul>
+      <a href="#" class="btn btn-lg">Скачать приложение</a>
+    </div>
+    <!-- Hidden on mobile -->
+    <div class="for-phone desktop-only">📱</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <h2 class="text-center">FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>Приложение платное?</span>
+          <span class="faq-ico">▼</span>
+        </div>
+        <div class="faq-ans">Нет, приложение полностью бесплатно. Никаких скрытых платежей или подписок.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>Чем вы отличаетесь от любой другой афиши?</span>
+          <span class="faq-ico">▼</span>
+        </div>
+        <div class="faq-ans">Мы фокусируемся на локальных и независимых артистах, которые часто остаются за бортом крупных афиш.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>Как добавляются мероприятия в приложение?</span>
+          <span class="faq-ico">▼</span>
+        </div>
+        <div class="faq-ans">Организаторы подают заявки через сайт, после чего модератор проверяет и публикует анонс в приложении.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>Я хочу опубликовать анонс о своём мероприятии, что делать?</span>
+          <span class="faq-ico">▼</span>
+        </div>
+        <div class="faq-ans">Заполните форму обратной связи ниже или перейдите в раздел «Для организатора» — там все инструкции.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="dl-section" id="download">
+  <div class="section-inner text-center">
+    <h2>Скачайте Local Music Party</h2>
+    <p class="section-sub" style="margin-top:12px;">Приложение для тех, кто живёт музыкой и хочет быть в центре локальных событий.</p>
+    <div class="dl-btns">
+      <a href="#" class="btn btn-lg">App Store</a>
+      <a href="#" class="btn btn-ghost btn-lg">Google Play</a>
+    </div>
+    <p class="note">Доступно для iOS и Android. Бесплатно.</p>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-section" id="contacts">
+  <div class="contact-inner">
+    <h2 class="text-center">Форма обратной связи</h2>
+    <p class="section-sub text-center" style="margin-top:10px;">
+      Оставь свои контакты — мы ответим на вопросы, поможем с размещением мероприятия или партнёрством.
+    </p>
+    <div class="contact-box">
+      <form id="contactForm" novalidate>
+        <div class="fg">
+          <label class="fl" for="fieldName">Имя</label>
+          <input type="text" id="fieldName" name="name" class="fi" placeholder="Ваше имя" required />
+        </div>
+        <div class="fg">
+          <label class="fl" for="fieldContact">Email или телефон</label>
+          <input type="text" id="fieldContact" name="contact" class="fi" placeholder="email@example.com" required />
+        </div>
+        <div class="fg">
+          <label class="fl" for="fieldMessage">Сообщение (опционально)</label>
+          <textarea id="fieldMessage" name="message" class="fi fta" placeholder="Расскажите о своём мероприятии или задайте вопрос"></textarea>
+        </div>
+        <div id="formStatus" class="form-status" aria-live="polite"></div>
+        <button type="submit" class="fsub" id="submitBtn">Отправить</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="foot-logo">🎵</div>
+      <div>
+        <div class="foot-bname">Local Music Party</div>
+        <div class="foot-bdesc">Мобильное приложение для поиска локальных музыкальных мероприятий.</div>
+      </div>
+    </div>
+    <nav class="foot-links">
+      <a href="#what-inside">Что внутри</a>
+      <a href="#for-organizer">Для организатора</a>
+      <a href="#for-user">Для пользователя</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="foot-right">
+      <div class="socials">
+        <a href="#" aria-label="VK">VK</a>
+        <a href="#" aria-label="Telegram">TG</a>
+        <a href="#" aria-label="Instagram">IG</a>
+      </div>
+      <span class="foot-copy">© 2026 Local Music Party</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
