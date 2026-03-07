@@ -2,3 +2,4 @@
 .builder/config/data.json
 .vscode/
 .idea/
+.env

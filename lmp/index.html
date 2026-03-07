@@ -6,6 +6,7 @@
   <title>Local Music Party</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Onder" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2/dist/aos.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -14,7 +15,18 @@
 <header>
   <nav class="nav">
     <a href="#" class="brand">
-      <div class="logo">🎵</div>
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+          <path d="M16 8V20.5C16 22.43 14.43 24 12.5 24C10.57 24 9 22.43 9 20.5C9 18.57 10.57 17 12.5 17C13.07 17 13.58 17.13 14 17.37V11H23V14H16.5" fill="white"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#9286ea"/>
+              <stop offset="1" stop-color="#fe70f4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
       <span class="brand-name">Local Music Party</span>
     </a>
     <div class="navlinks">
@@ -43,7 +55,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a" alt="Концерт" />
+    <img src="img/null.png" alt="Концерт" />
   </div>
   <div class="hero-content">
     <div class="hero-text">
@@ -64,7 +76,7 @@
 <!-- WHAT'S INSIDE -->
 <section class="what-section" id="what-inside">
   <div class="what-inner">
-    <div class="what-text">
+    <div class="what-text" data-aos="fade-up">
       <h2>Что именно есть<br>в приложении</h2>
       <ul class="blist">
         <li>Афиша музыкальных мероприятий</li>
@@ -75,13 +87,12 @@
       </ul>
     </div>
     <!-- Hidden on mobile -->
-    <div class="phone-col desktop-only">
+    <div class="phone-col desktop-only" data-aos="fade-left" data-aos-delay="100">
       <button class="phone-arrow" id="phonePrev" aria-label="Назад">
         <svg width="14" height="14" viewBox="0 0 14 14"><path d="M9 2L4 7l5 5" stroke="#e0defb" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
       </button>
       <div class="phone-wrap">
-        <div class="phone-status"><span>9:41</span><span>●●●</span></div>
-        <img id="phoneImg" src="https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a" alt="Скриншот приложения" />
+        <img id="phoneImg" src="img/null.png" alt="Скриншот приложения" />
       </div>
       <button class="phone-arrow" id="phoneNext" aria-label="Вперёд">
         <svg width="14" height="14" viewBox="0 0 14 14"><path d="M5 2l5 5-5 5" stroke="#e0defb" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
@@ -93,24 +104,24 @@
 <!-- HOW IT WORKS -->
 <section class="how-section">
   <div class="section-inner">
-    <h2>Как это работает?</h2>
-    <p class="section-sub">Три шага, чтобы больше никогда не пропускать интересные концерты в своём городе.</p>
+    <h2 data-aos="fade-up">Как это работает?</h2>
+    <p class="section-sub" data-aos="fade-up" data-aos-delay="50">Три шага, чтобы больше никогда не пропускать интересные концерты в своём городе.</p>
     <div class="steps">
-      <div class="step">
+      <div class="step" data-aos="fade-up" data-aos-delay="100">
         <div class="step-top">
           <div class="step-n">1</div>
           <div class="step-t">Выбирай город и жанр</div>
         </div>
         <p>Фильтруй события по городам, жанрам и площадкам. От квартирников до фестивалей.</p>
       </div>
-      <div class="step">
+      <div class="step" data-aos="fade-up" data-aos-delay="200">
         <div class="step-top">
           <div class="step-n">2</div>
           <div class="step-t">Следи за артистами</div>
         </div>
         <p>Подписывайся на любимых локальных артистов и получай анонсы их концертов.</p>
       </div>
-      <div class="step">
+      <div class="step" data-aos="fade-up" data-aos-delay="300">
         <div class="step-top">
           <div class="step-n">3</div>
           <div class="step-t">Планируй вечеринки</div>
@@ -124,10 +135,10 @@
 <!-- EVENTS -->
 <section class="events-section">
   <div class="events-head section-inner">
-    <h2>Мероприятия</h2>
-    <p class="section-sub">Живые концерты, атмосферные вечера и гибкое комьюнити — всё это в одном месте.</p>
+    <h2 data-aos="fade-up">Мероприятия</h2>
+    <p class="section-sub" data-aos="fade-up" data-aos-delay="50">Живые концерты, атмосферные вечера и гибкое комьюнити — всё это в одном месте.</p>
   </div>
-  <div class="slider-container">
+  <div class="slider-container" data-aos="fade-up" data-aos-delay="100">
     <button class="slider-btn slider-btn-prev" id="sliderPrev" aria-label="Предыдущий слайд">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <path d="M12.5 5L7.5 10l5 5"/>
@@ -135,23 +146,23 @@
     </button>
     <div class="slider-wrap">
       <div class="slider-track" id="sliderTrack">
-        <div class="slide slide-first">
-          <img src="https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a" alt="Концерты" draggable="false" />
+        <div class="slide slide-first" data-aos="zoom-in" data-aos-delay="0">
+          <img src="img/null.png" alt="Концерты" draggable="false" />
           <div class="slide-title">Мероприятия с концертами</div>
           <p class="slide-desc">Актуальные концерты локальных и уже заметных групп — от маленьких сцен до фестивалей.</p>
         </div>
-        <div class="slide">
-          <img src="https://www.figma.com/api/mcp/asset/ca5e344f-af63-4873-a092-caefd5446329" alt="Комьюнити" draggable="false" />
+        <div class="slide" data-aos="zoom-in" data-aos-delay="50">
+          <img src="img/null.png" alt="Комьюнити" draggable="false" />
           <div class="slide-title">Гибкое комьюнити</div>
           <p class="slide-desc">Актуальные концерты локальных и уже заметных групп — от маленьких сцен до фестивалей.</p>
         </div>
-        <div class="slide">
-          <img src="https://www.figma.com/api/mcp/asset/1bf5ce68-3417-4876-81ba-1cbdd35afb91" alt="Вечерние сеты" draggable="false" />
+        <div class="slide" data-aos="zoom-in" data-aos-delay="100">
+          <img src="img/null.png" alt="Вечерние сеты" draggable="false" />
           <div class="slide-title">Вечерние сеты и оркестры</div>
           <p class="slide-desc">Актуальные концерты локальных и уже заметных групп — от маленьких сцен до фестивалей.</p>
         </div>
-        <div class="slide">
-          <img src="https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a" alt="Фестивали" draggable="false" />
+        <div class="slide" data-aos="zoom-in" data-aos-delay="150">
+          <img src="img/null.png" alt="Фестивали" draggable="false" />
           <div class="slide-title">Открытые фестивали</div>
           <p class="slide-desc">Большие летние опен-эйры и камерные вечера под открытым небом.</p>
         </div>
@@ -173,8 +184,8 @@
 
 <!-- EARN -->
 <section class="earn-section">
-  <div class="earn-card">
-    <div class="earn-text">
+  <div class="earn-card" data-aos="fade-up">
+    <div class="earn-text" data-aos="fade-right" data-aos-delay="100">
       <h2 class="earn-title">Зарабатывайте, посещая рестораны и заказывая доставку</h2>
       <p class="earn-desc">
         Получайте <span class="earn-hl">+10% от каждого заказа</span> на ваш счёт в приложении.
@@ -182,8 +193,8 @@
         которые можно потратить на билеты и мерч.
       </p>
     </div>
-    <div class="earn-img">
-      <img src="https://www.figma.com/api/mcp/asset/06844dea-4191-490c-9acf-9066bd5196a5" alt="Экран приложения" />
+    <div class="earn-img" data-aos="fade-left" data-aos-delay="100">
+      <img src="img/null.png" alt="Экран приложения" />
     </div>
   </div>
 </section>
@@ -192,8 +203,12 @@
 <section class="for-section" id="for-organizer">
   <div class="for-inner">
     <!-- Hidden on mobile -->
-    <div class="for-phone desktop-only">📱</div>
-    <div class="for-text">
+    <div class="for-phone desktop-only" data-aos="fade-right">
+      <div class="phone-wrap">
+        <img src="img/null.png" alt="Организатору" />
+      </div>
+    </div>
+    <div class="for-text" data-aos="fade-left" data-aos-delay="100">
       <h2>Для организатора</h2>
       <ul class="blist" style="margin-bottom:24px;">
         <li>Ты сам предлагаешь мероприятие через наш сайт, после проверки модератором анонс появится в приложении.</li>
@@ -208,7 +223,7 @@
 <!-- FOR USER -->
 <section class="for-section" id="for-user">
   <div class="for-inner flipped">
-    <div class="for-text">
+    <div class="for-text" data-aos="fade-right" data-aos-delay="100">
       <h2 class="pink">Для пользователя</h2>
       <p class="for-note">Пользователь приложения Local Music Party:</p>
       <ul class="blist grad" style="margin-bottom:24px;">
@@ -220,42 +235,54 @@
       <a href="#" class="btn btn-lg">Скачать приложение</a>
     </div>
     <!-- Hidden on mobile -->
-    <div class="for-phone desktop-only">📱</div>
+    <div class="for-phone desktop-only" data-aos="fade-left">
+      <div class="phone-wrap">
+        <img src="img/null.png" alt="Пользователю" />
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section class="faq-section" id="faq">
   <div class="section-inner">
-    <h2 class="text-center">FAQ</h2>
+    <h2 class="text-center" data-aos="fade-up">FAQ</h2>
     <div class="faq-list">
-      <div class="faq-item">
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="50">
         <div class="faq-q">
           <span>Приложение платное?</span>
-          <span class="faq-ico">▼</span>
+          <svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </div>
-        <div class="faq-ans">Нет, приложение полностью бесплатно. Никаких скрытых платежей или подписок.</div>
+        <div class="faq-ans"><div class="faq-ai">Нет, приложение полностью бесплатно. Никаких скрытых платежей или подписок.</div></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
         <div class="faq-q">
           <span>Чем вы отличаетесь от любой другой афиши?</span>
-          <span class="faq-ico">▼</span>
+          <svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </div>
-        <div class="faq-ans">Мы фокусируемся на локальных и независимых артистах, которые часто остаются за бортом крупных афиш.</div>
+        <div class="faq-ans"><div class="faq-ai">Мы фокусируемся на локальных и независимых артистах, которые часто остаются за бортом крупных афиш.</div></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
         <div class="faq-q">
           <span>Как добавляются мероприятия в приложение?</span>
-          <span class="faq-ico">▼</span>
+          <svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </div>
-        <div class="faq-ans">Организаторы подают заявки через сайт, после чего модератор проверяет и публикует анонс в приложении.</div>
+        <div class="faq-ans"><div class="faq-ai">Организаторы подают заявки через сайт, после чего модератор проверяет и публикует анонс в приложении.</div></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
         <div class="faq-q">
           <span>Я хочу опубликовать анонс о своём мероприятии, что делать?</span>
-          <span class="faq-ico">▼</span>
+          <svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </div>
-        <div class="faq-ans">Заполните форму обратной связи ниже или перейдите в раздел «Для организатора» — там все инструкции.</div>
+        <div class="faq-ans"><div class="faq-ai">Заполните форму обратной связи ниже или перейдите в раздел «Для организатора» — там все инструкции.</div></div>
       </div>
     </div>
   </div>
@@ -263,7 +290,7 @@
 
 <!-- DOWNLOAD -->
 <section class="dl-section" id="download">
-  <div class="section-inner text-center">
+  <div class="section-inner text-center" data-aos="fade-up">
     <h2>Скачайте Local Music Party</h2>
     <p class="section-sub" style="margin-top:12px;">Приложение для тех, кто живёт музыкой и хочет быть в центре локальных событий.</p>
     <div class="dl-btns">
@@ -277,11 +304,11 @@
 <!-- CONTACT FORM -->
 <section class="contact-section" id="contacts">
   <div class="contact-inner">
-    <h2 class="text-center">Форма обратной связи</h2>
-    <p class="section-sub text-center" style="margin-top:10px;">
+    <h2 class="text-center" data-aos="fade-up">Форма обратной связи</h2>
+    <p class="section-sub text-center" style="margin-top:10px;" data-aos="fade-up" data-aos-delay="50">
       Оставь свои контакты — мы ответим на вопросы, поможем с размещением мероприятия или партнёрством.
     </p>
-    <div class="contact-box">
+    <div class="contact-box" data-aos="fade-up" data-aos-delay="100">
       <form id="contactForm" novalidate>
         <div class="fg">
           <label class="fl" for="fieldName">Имя</label>
@@ -306,7 +333,18 @@
 <footer>
   <div class="foot-inner">
     <div class="foot-brand">
-      <div class="foot-logo">🎵</div>
+      <div class="foot-logo">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="url(#logo-grad-foot)"/>
+          <path d="M16 8V20.5C16 22.43 14.43 24 12.5 24C10.57 24 9 22.43 9 20.5C9 18.57 10.57 17 12.5 17C13.07 17 13.58 17.13 14 17.37V11H23V14H16.5" fill="white"/>
+          <defs>
+            <linearGradient id="logo-grad-foot" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#9286ea"/>
+              <stop offset="1" stop-color="#fe70f4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
       <div>
         <div class="foot-bname">Local Music Party</div>
         <div class="foot-bdesc">Мобильное приложение для поиска локальных музыкальных мероприятий.</div>
@@ -321,9 +359,21 @@
     </nav>
     <div class="foot-right">
       <div class="socials">
-        <a href="#" aria-label="VK">VK</a>
-        <a href="#" aria-label="Telegram">TG</a>
-        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="VK">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.63 3h-7.26C5.11 3 3 5.11 3 8.37v7.26C3 18.89 5.11 21 8.37 21h7.26c3.26 0 5.37-2.11 5.37-5.37v-7.26C21 5.11 18.89 3 15.63 3zM18.15 14.54c0 1.25-.97 2.22-2.22 2.22h-1.62c-.92 0-1.74-.53-2.13-1.37-.28-.56-.76-1.57-1.12-2.13-.19-.28-.39-.42-.64-.42s-.5.14-.64.42c-.36.56-.84 1.57-1.12 2.13-.39.84-1.21 1.37-2.13 1.37H4.93c-1.25 0-2.22-.97-2.22-2.22V9.46c0-1.25.97-2.22 2.22-2.22h1.62c.92 0 1.74.53 2.13 1.37.28.56.76 1.57 1.12 2.13.19.28.39.42.64.42s.5-.14.64-.42c.36-.56.84-1.57 1.12-2.13.39-.84 1.21-1.37 2.13-1.37h1.62c1.25 0 2.22.97 2.22 2.22v5.08z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Telegram">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.35-.49.96-.75 3.78-1.65 6.31-2.74 7.58-3.27 3.61-1.51 4.35-1.77 4.84-1.78.11 0 .35.03.5.16.13.11.16.27.18.37.02.08.03.24.01.42z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </a>
       </div>
       <span class="foot-copy">© 2026 Local Music Party</span>
     </div>
@@ -331,6 +381,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://unpkg.com/aos@2/dist/aos.js"></script>
 <script src="js/config.js"></script>
 <script src="js/main.js"></script>
 </body>
