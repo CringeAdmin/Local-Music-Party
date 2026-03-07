@@ -3,9 +3,15 @@
  * Вся интерактивность страницы + отправка формы в Supabase
  */
 
-/* ════════════════════════════════════
-   Supabase client
-════════════════════════════════════ */
+
+AOS.init({
+  duration: 800,
+  easing: 'ease-in-out-quad',
+  once: true,
+  offset: 100
+});
+
+
 const { createClient } = supabase;
 
 const supabaseClient = createClient(
@@ -13,9 +19,7 @@ const supabaseClient = createClient(
   window.SUPABASE_ANON
 );
 
-/* ════════════════════════════════════
-   Burger / mobile nav
-════════════════════════════════════ */
+/* mobile nav*/
 const burgerBtn = document.getElementById('burgerBtn');
 const mobNav    = document.getElementById('mobNav');
 
@@ -33,9 +37,7 @@ mobNav.querySelectorAll('a').forEach(link => {
   });
 });
 
-/* ════════════════════════════════════
-   Phone mockup — image switcher
-════════════════════════════════════ */
+/* Phone mockup — image switcher */
 const phoneScreens = [
   'https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a',
   'https://www.figma.com/api/mcp/asset/ca5e344f-af63-4873-a092-caefd5446329',
@@ -57,9 +59,7 @@ function setPhoneScreen(idx) {
 document.getElementById('phonePrev')?.addEventListener('click', () => setPhoneScreen(phoneIdx - 1));
 document.getElementById('phoneNext')?.addEventListener('click', () => setPhoneScreen(phoneIdx + 1));
 
-/* ════════════════════════════════════
-   Events slider
-════════════════════════════════════ */
+/* Events slider */
 const sliderTrack = document.getElementById('sliderTrack');
 const sliderPrev  = document.getElementById('sliderPrev');
 const sliderNext  = document.getElementById('sliderNext');
@@ -120,9 +120,38 @@ window.addEventListener('resize', updateDotsAndButtons);
 // Initialize button states
 updateDotsAndButtons();
 
-/* ════════════════════════════════════
-   FAQ accordion
-════════════════════════════════════ */
+// Drag to scroll
+let isDragging = false;
+let dragStartX = 0;
+let dragScrollLeft = 0;
+let dragVelocity = 0;
+let lastX = 0;
+
+sliderTrack.addEventListener('mousedown', e => {
+  isDragging = true;
+  dragStartX = e.pageX;
+  dragScrollLeft = sliderTrack.scrollLeft;
+  lastX = e.pageX;
+});
+
+sliderTrack.addEventListener('mouseleave', () => {
+  isDragging = false;
+});
+
+sliderTrack.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+sliderTrack.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const deltaX = e.pageX - lastX;
+  dragVelocity = deltaX;
+  lastX = e.pageX;
+  sliderTrack.scrollLeft = dragScrollLeft - (e.pageX - dragStartX);
+});
+
+/* FAQ accordion */
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
     const item   = btn.closest('.faq-item');
@@ -134,9 +163,7 @@ document.querySelectorAll('.faq-q').forEach(btn => {
   });
 });
 
-/* ════════════════════════════════════
-   Contact form → Supabase
-════════════════════════════════════ */
+/* Contact form → Supabase */
 const contactForm = document.getElementById('contactForm');
 const formStatus  = document.getElementById('formStatus');
 const submitBtn   = document.getElementById('submitBtn');
@@ -153,7 +180,7 @@ contactForm.addEventListener('submit', async (e) => {
   const contact = contactForm.contact.value.trim();
   const message = contactForm.message.value.trim();
 
-  // Basic validation
+  // validation
   if (!name) { setStatus('Пожалуйста, укажите ваше имя.', 'error'); return; }
   if (!contact) { setStatus('Пожалуйста, укажите email или телефон.', 'error'); return; }
 
