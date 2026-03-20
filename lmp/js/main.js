@@ -154,6 +154,37 @@ makePhoneSlider('usrPrev', 'usrNext', 'usrPhoneImg', [
 
 
 
+// Drag to scroll
+let isDragging = false;
+let dragStartX = 0;
+let dragScrollLeft = 0;
+let dragVelocity = 0;
+let lastX = 0;
+
+sliderTrack.addEventListener('mousedown', e => {
+  isDragging = true;
+  dragStartX = e.pageX;
+  dragScrollLeft = sliderTrack.scrollLeft;
+  lastX = e.pageX;
+});
+
+sliderTrack.addEventListener('mouseleave', () => {
+  isDragging = false;
+});
+
+sliderTrack.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+sliderTrack.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const deltaX = e.pageX - lastX;
+  dragVelocity = deltaX;
+  lastX = e.pageX;
+  sliderTrack.scrollLeft = dragScrollLeft - (e.pageX - dragStartX);
+});
+
 /* FAQ accordion */
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -179,7 +210,9 @@ contactForm.addEventListener('submit', async (e) => {
   const name    = contactForm.name.value.trim();
   const contact = contactForm.contact.value.trim();
   const message = contactForm.message.value.trim();
-  if (!name)    { setStatus('Пожалуйста, укажите ваше имя.', 'error'); return; }
+
+  // validation
+  if (!name) { setStatus('Пожалуйста, укажите ваше имя.', 'error'); return; }
   if (!contact) { setStatus('Пожалуйста, укажите email или телефон.', 'error'); return; }
   submitBtn.disabled = true;
   submitBtn.textContent = 'Отправка…';
