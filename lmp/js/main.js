@@ -3,19 +3,22 @@
  * Вся интерактивность страницы + отправка формы в Supabase
  */
 
-/* ════════════════════════════════════
-   Supabase client
-════════════════════════════════════ */
-const { createClient } = supabase;
+try {
+  AOS.init({ duration: 800, easing: 'ease-in-out-quad', once: true, offset: 100 });
+} catch(e) {}
 
-const supabaseClient = createClient(
-  window.SUPABASE_URL,
-  window.SUPABASE_ANON
-);
+let supabaseClient = null;
+try {
+  const { createClient } = supabase;
+  supabaseClient = createClient(
+    window.SUPABASE_URL,
+    window.SUPABASE_ANON
+  );
+} catch(e) {
+  console.warn('Supabase не загружен:', e);
+}
 
-/* ════════════════════════════════════
-   Burger / mobile nav
-════════════════════════════════════ */
+/* mobile nav*/
 const burgerBtn = document.getElementById('burgerBtn');
 const mobNav    = document.getElementById('mobNav');
 
@@ -33,110 +36,135 @@ mobNav.querySelectorAll('a').forEach(link => {
   });
 });
 
-/* ════════════════════════════════════
-   Phone mockup — image switcher
-════════════════════════════════════ */
-const phoneScreens = [
-  'https://www.figma.com/api/mcp/asset/e512004d-93b8-4a9d-a732-15bfd0f70d3a',
-  'https://www.figma.com/api/mcp/asset/ca5e344f-af63-4873-a092-caefd5446329',
-  'https://www.figma.com/api/mcp/asset/1bf5ce68-3417-4876-81ba-1cbdd35afb91',
-];
-let phoneIdx = 0;
-
-function setPhoneScreen(idx) {
-  phoneIdx = (idx + phoneScreens.length) % phoneScreens.length;
-  const img = document.getElementById('phoneImg');
-  if (!img) return;
-  img.style.opacity = '0';
-  setTimeout(() => {
-    img.src = phoneScreens[phoneIdx];
-    img.style.opacity = '1';
-  }, 150);
+/* Phone mockup sliders */
+function makePhoneSlider(prevId, nextId, imgId, images) {
+  const prev = document.getElementById(prevId);
+  const next = document.getElementById(nextId);
+  const img  = document.getElementById(imgId);
+  if (!prev || !next || !img || !images.length) return;
+  let idx = 0;
+  img.src = images[0];
+  function show(i) {
+    idx = (i + images.length) % images.length;
+    img.style.opacity = '0';
+    setTimeout(() => { img.src = images[idx]; img.style.opacity = '1'; }, 150);
+  }
+  prev.addEventListener('click', () => show(idx - 1));
+  next.addEventListener('click', () => show(idx + 1));
 }
 
-document.getElementById('phonePrev')?.addEventListener('click', () => setPhoneScreen(phoneIdx - 1));
-document.getElementById('phoneNext')?.addEventListener('click', () => setPhoneScreen(phoneIdx + 1));
+makePhoneSlider('phonePrev', 'phoneNext', 'phoneImg', [
+  'img/phone1.png',
+  'img/phone2.png',
+  'img/phone3.png',
+]);
+makePhoneSlider('orgPrev', 'orgNext', 'orgPhoneImg', [
+  'img/org1.png',
+  'img/org2.png',
+]);
+makePhoneSlider('usrPrev', 'usrNext', 'usrPhoneImg', [
+  'img/usr1.png',
+  'img/usr2.png',
+]);
 
-/* ════════════════════════════════════
-   Events slider
-════════════════════════════════════ */
-const sliderTrack = document.getElementById('sliderTrack');
-const sliderPrev  = document.getElementById('sliderPrev');
-const sliderNext  = document.getElementById('sliderNext');
-const dots        = document.querySelectorAll('.dot');
-let currentIndex  = 0;
+/* Events slider — infinite + autoplay */
+(function(){
+  const track = document.getElementById('sliderTrack');
+  const dotsEl = document.getElementById('sliderDots');
+  const btnPrev = document.getElementById('sliderPrev');
+  const btnNext = document.getElementById('sliderNext');
+  if (!track) return;
 
-function getSlideWidth() {
-  const slide = sliderTrack.querySelector('.slide');
-  return (slide?.offsetWidth || 0) + 16;
-}
+  const origSlides = Array.from(track.children);
+  const N = origSlides.length;
+  if (!N) return;
 
-function getCurrentIndex() {
-  const slideW = getSlideWidth();
-  if (slideW === 0) return 0;
-  return Math.round(sliderTrack.scrollLeft / slideW);
-}
+  // Clone for infinite loop
+  origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
+  origSlides.forEach(s => track.insertBefore(s.cloneNode(true), track.firstChild));
 
-function updateDotsAndButtons() {
-  currentIndex = getCurrentIndex();
-  const slides = sliderTrack.querySelectorAll('.slide');
-  const totalSlides = slides.length;
+  let vIdx = N;
+  let cur = 0;
+  let busy = false;
+  let autoT = null;
 
-  dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
-  sliderPrev.disabled = currentIndex === 0;
-  sliderNext.disabled = currentIndex >= totalSlides - 1;
-}
+  function sw() {
+    const s = track.firstElementChild;
+    const cs = getComputedStyle(track);
+    return s.offsetWidth + (parseFloat(cs.gap) || 16);
+  }
 
-function goToSlide(index) {
-  const slides = sliderTrack.querySelectorAll('.slide');
-  if (!slides[index]) return;
-  const slideW = getSlideWidth();
-  const targetScroll = slideW * index;
-  sliderTrack.scrollTo({ left: targetScroll, behavior: 'smooth' });
-  currentIndex = index;
-}
+  function jumpSilent(i) {
+    track.style.scrollBehavior = 'auto';
+    track.scrollLeft = sw() * i;
+    void track.offsetWidth;
+    track.style.scrollBehavior = '';
+  }
 
-// Dot click
-dots.forEach(dot => {
-  dot.addEventListener('click', () => goToSlide(Number(dot.dataset.index)));
-});
+  function updateDots() {
+    if (!dotsEl) return;
+    dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
 
-// Navigation buttons
-sliderPrev.addEventListener('click', () => {
-  if (currentIndex > 0) goToSlide(currentIndex - 1);
-});
+  function go(delta) {
+    if (busy) return;
+    busy = true;
+    vIdx += delta;
+    cur = ((vIdx - N) % N + N) % N;
+    updateDots();
+    track.scrollTo({ left: sw() * vIdx, behavior: 'smooth' });
+    setTimeout(() => {
+      if (vIdx < N) { vIdx += N; jumpSilent(vIdx); }
+      else if (vIdx >= N * 2) { vIdx -= N; jumpSilent(vIdx); }
+      busy = false;
+    }, 420);
+  }
 
-sliderNext.addEventListener('click', () => {
-  const slides = sliderTrack.querySelectorAll('.slide');
-  if (currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
-});
+  // Init
+  jumpSilent(N);
 
-// Update dots and buttons on scroll
-sliderTrack.addEventListener('scroll', updateDotsAndButtons, { passive: true });
+  // Dots click
+  if (dotsEl) {
+    dotsEl.querySelectorAll('.dot').forEach((d, i) => {
+      d.addEventListener('click', () => { resetAuto(); go(i - cur); });
+    });
+  }
 
-// Update on resize
-window.addEventListener('resize', updateDotsAndButtons);
+  btnNext?.addEventListener('click', () => { resetAuto(); go(1); });
+  btnPrev?.addEventListener('click', () => { resetAuto(); go(-1); });
 
-// Initialize button states
-updateDotsAndButtons();
+  function startAuto() { autoT = setInterval(() => go(1), 3500); }
+  function stopAuto()  { clearInterval(autoT); }
+  function resetAuto() { stopAuto(); startAuto(); }
 
-/* ════════════════════════════════════
-   FAQ accordion
-════════════════════════════════════ */
+  track.addEventListener('mouseenter', stopAuto);
+  track.addEventListener('mouseleave', startAuto);
+
+  // Touch swipe
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) { resetAuto(); go(dx < 0 ? 1 : -1); }
+  }, { passive: true });
+
+  startAuto();
+})();
+
+
+
+
+/* FAQ accordion */
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
     const item   = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    // Close all
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    // Open clicked (unless it was already open)
     if (!isOpen) item.classList.add('open');
   });
 });
 
-/* ════════════════════════════════════
-   Contact form → Supabase
-════════════════════════════════════ */
+/* Contact form → Supabase */
 const contactForm = document.getElementById('contactForm');
 const formStatus  = document.getElementById('formStatus');
 const submitBtn   = document.getElementById('submitBtn');
@@ -148,26 +176,20 @@ function setStatus(msg, type) {
 
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-
   const name    = contactForm.name.value.trim();
   const contact = contactForm.contact.value.trim();
   const message = contactForm.message.value.trim();
-
-  // Basic validation
-  if (!name) { setStatus('Пожалуйста, укажите ваше имя.', 'error'); return; }
+  if (!name)    { setStatus('Пожалуйста, укажите ваше имя.', 'error'); return; }
   if (!contact) { setStatus('Пожалуйста, укажите email или телефон.', 'error'); return; }
-
   submitBtn.disabled = true;
   submitBtn.textContent = 'Отправка…';
   setStatus('', '');
-
   try {
+    if (!supabaseClient) throw new Error('Supabase недоступен');
     const { error } = await supabaseClient
       .from('contact_submissions')
       .insert([{ name, contact, message }]);
-
     if (error) throw error;
-
     setStatus('✓ Сообщение отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
     contactForm.reset();
   } catch (err) {

@@ -1,2 +1,2 @@
-window.SUPABASE_URL  = '';
-window.SUPABASE_ANON = '';
+window.SUPABASE_URL  = 'VITE_SUPABASE_URL';
+window.SUPABASE_ANON = 'VITE_SUPABASE_ANON';
