@@ -35,17 +35,16 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
+  <nav class="mob-nav" id="mobNav">
+    <a href="#what-inside">Что внутри</a>
+    <a href="#for-organizer">Для организатора</a>
+    <a href="#for-user">Для пользователя</a>
+    <a href="#local-artists">Артисты</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contacts">Контакты</a>
+    <a href="#download" class="btn">Скачать приложение</a>
+  </nav>
 </header>
-
-<nav class="mob-nav" id="mobNav">
-  <a href="#what-inside">Что внутри</a>
-  <a href="#for-organizer">Для организатора</a>
-  <a href="#for-user">Для пользователя</a>
-  <a href="#local-artists">Артисты</a>
-  <a href="#faq">FAQ</a>
-  <a href="#contacts">Контакты</a>
-  <a href="#download" class="btn">Скачать приложение</a>
-</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -57,10 +56,10 @@
   </div>
   <div class="hero-content">
     <div class="hero-text">
-      <h1>Все концерты<br>— рядом с тобой</h1>
+      <h1>Приложение для локальных мероприятий</h1>
       <p class="hero-sub">
-        Находи концерты рядом.<br>
-        Открывай новых артистов.
+        Не пропусти ни одного концерта в своём городе.<br>Открой для себя
+новых артистов и планируй <br>музыкальные вечеринки заранее.
       </p>
       <div class="hero-btns">
         <a href="#" class="btn btn-lg">Скачать в App Store</a>
@@ -211,13 +210,19 @@
   <div class="for-inner">
     <!-- Hidden on mobile -->
     <div class="for-phone desktop-only" data-aos="fade-right">
+      <button class="phone-arrow" id="orgPrev" aria-label="Назад">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M9 2L4 7l5 5" stroke="#e0defb" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </button>
       <div class="phone-wrap">
-        <img src="img/org1.png" alt="Организатору" />
+        <img id="orgPhoneImg" src="img/org1.png" alt="Организатору" />
       </div>
+      <button class="phone-arrow" id="orgNext" aria-label="Вперёд">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M5 2l5 5-5 5" stroke="#e0defb" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </button>
     </div>
     <div class="for-text" data-aos="fade-left" data-aos-delay="100">
       <div class="for-eyebrow">Для организатора</div>
-      <h2>Твоё мероприятие —<br>в приложении</h2>
+      <h2>Твоё мероприятие — в приложении</h2>
       <div class="for-pills">
         <span class="for-pill">Бесплатно</span>
         <span class="for-pill">Модерация 24ч</span>
@@ -245,9 +250,15 @@
     </div>
     <!-- Hidden on mobile -->
     <div class="for-phone desktop-only" data-aos="fade-left">
+      <button class="phone-arrow" id="usrPrev" aria-label="Назад">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M9 2L4 7l5 5" stroke="#e0defb" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </button>
       <div class="phone-wrap">
-        <img src="img/usr1.png" alt="Пользователю" />
+        <img id="usrPhoneImg" src="img/usr1.png" alt="Пользователю" />
       </div>
+      <button class="phone-arrow" id="usrNext" aria-label="Вперёд">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M5 2l5 5-5 5" stroke="#e0defb" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -258,7 +269,7 @@
   <div class="section-inner">
     <h2 class="text-center" data-aos="fade-up">Локальные артисты</h2>
     <p class="section-sub text-center" data-aos="fade-up" data-aos-delay="50">
-      Открой новых исполнителей — от инди-рока до техно и нео-джаза.<br>
+      Открой новых исполнителей — от инди-рока до техно и нео-джаза.
       Все они уже в Local Music Party.
     </p>
     <div class="artists-grid" data-aos="fade-up" data-aos-delay="100">
@@ -337,8 +348,7 @@
 <!-- DOWNLOAD -->
 <section class="dl-section" id="download">
   <div class="section-inner text-center" data-aos="fade-up">
-    <h2>Скачайте Local Music Party</h2>
-    <p class="section-sub" style="margin-top:12px;">Для тех, кто живёт музыкой.</p>
+    <h2>Скачайте</br> Local Music Party</h2>
     <div class="dl-btns">
       <a href="#" class="btn btn-lg">App Store</a>
       <a href="#" class="btn btn-ghost btn-lg">Google Play</a>
@@ -350,7 +360,7 @@
 <!-- CONTACT FORM -->
 <section class="contact-section" id="contacts">
   <div class="contact-inner">
-    <h2 class="text-center" data-aos="fade-up">Форма обратной связи</h2>
+    <h2 class="text-center" data-aos="fade-up">Форма</br> обратной связи</h2>
     <p class="section-sub text-center" style="margin-top:10px;" data-aos="fade-up" data-aos-delay="50">
       Оставь свои контакты — мы ответим на вопросы, поможем с размещением мероприятия или партнёрством.
     </p>
