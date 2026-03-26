@@ -54,17 +54,17 @@ function makePhoneSlider(prevId, nextId, imgId, images) {
 }
 
 makePhoneSlider('phonePrev', 'phoneNext', 'phoneImg', [
-  'img/phone1.png',
-  'img/phone2.png',
-  'img/phone3.png',
+  'img/phone1.webp',
+  'img/phone2.webp',
+  'img/phone3.webp',
 ]);
 makePhoneSlider('orgPrev', 'orgNext', 'orgPhoneImg', [
-  'img/org1.png',
-  'img/org2.png',
+  'img/org1.webp',
+  'img/org2.webp',
 ]);
 makePhoneSlider('usrPrev', 'usrNext', 'usrPhoneImg', [
-  'img/usr1.png',
-  'img/usr2.png',
+  'img/usr1.webp',
+  'img/usr2.webp',
 ]);
 
 /* Events slider — infinite + autoplay */
