@@ -70,7 +70,6 @@ makePhoneSlider('usrPrev', 'usrNext', 'usrPhoneImg', [
 /* Events slider — infinite + autoplay */
 (function(){
   const track = document.getElementById('sliderTrack');
-  const dotsEl = document.getElementById('sliderDots');
   const btnPrev = document.getElementById('sliderPrev');
   const btnNext = document.getElementById('sliderNext');
   if (!track) return;
@@ -81,7 +80,6 @@ makePhoneSlider('usrPrev', 'usrNext', 'usrPhoneImg', [
 
   // Clone for infinite loop
   origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
-  origSlides.forEach(s => track.insertBefore(s.cloneNode(true), track.firstChild));
 
   let vIdx = N;
   let cur = 0;
@@ -101,17 +99,11 @@ makePhoneSlider('usrPrev', 'usrNext', 'usrPhoneImg', [
     track.style.scrollBehavior = '';
   }
 
-  function updateDots() {
-    if (!dotsEl) return;
-    dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
-  }
-
   function go(delta) {
     if (busy) return;
     busy = true;
     vIdx += delta;
     cur = ((vIdx - N) % N + N) % N;
-    updateDots();
     track.scrollTo({ left: sw() * vIdx, behavior: 'smooth' });
     setTimeout(() => {
       if (vIdx < N) { vIdx += N; jumpSilent(vIdx); }
@@ -122,13 +114,6 @@ makePhoneSlider('usrPrev', 'usrNext', 'usrPhoneImg', [
 
   // Init
   jumpSilent(N);
-
-  // Dots click
-  if (dotsEl) {
-    dotsEl.querySelectorAll('.dot').forEach((d, i) => {
-      d.addEventListener('click', () => { resetAuto(); go(i - cur); });
-    });
-  }
 
   btnNext?.addEventListener('click', () => { resetAuto(); go(1); });
   btnPrev?.addEventListener('click', () => { resetAuto(); go(-1); });

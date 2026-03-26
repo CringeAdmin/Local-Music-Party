@@ -276,10 +276,7 @@ header {
   position: relative; overflow: hidden; flex-shrink: 0;
 }
 .phone-wrap::before {
-  content: '';
-  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-  width: 64px; height: 18px;
-  background: #030303; border-radius: 10px; z-index: 3;
+  display: none;
 }
 .phone-wrap img {
   position: absolute; inset: 0;
@@ -453,10 +450,7 @@ header {
 }
 
 .slider-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding: 16px var(--px) 0;
+  display: none;
 }
 .dot {
   width: 8px;
@@ -810,16 +804,40 @@ footer {
   .foot-links { display: none; }
 }
 
-/* ≤ 768px: hide phone mockups  */
+/* ≤ 768px: show phone mockups on mobile */
 @media (max-width: 768px) {
-  .desktop-only { display: none !important; }
-
   /* What inside becomes full-width text only */
   .what-inner { grid-template-columns: 1fr; }
 
-  /* For sections: text only, no phone */
+  /* For sections: stack, phone visible */
   .for-inner,
   .for-inner.flipped { grid-template-columns: 1fr; }
+
+  /* Show phone mockups on mobile */
+  .desktop-only {
+    display: flex !important;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  /* Bigger phone wrap for mobile */
+  .phone-wrap {
+    width: 240px;
+    height: 500px;
+  }
+
+  /* What section phone col on mobile */
+  .phone-col {
+    margin-top: 24px;
+    justify-content: center;
+  }
+
+  /* For sections: phone always on top */
+  .for-inner .for-phone,
+  .for-inner.flipped .for-phone {
+    order: -1;
+    margin: 0 auto;
+  }
 }
 
 /* ≤ 640px  */
