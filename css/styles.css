@@ -36,7 +36,7 @@ h1 {
 }
 h2 {
   font-family: var(--fd);
-  font-size: clamp(14px, 2.8vw, 24px);
+  font-size: clamp(14px, 2.2vw, 24px);
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 1.9;
@@ -399,7 +399,7 @@ header {
 .slider-track {
   display: flex;
   gap: 16px;
-  padding: 0 0 24px;
+  padding: 0 var(--px) 24px;
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -491,7 +491,7 @@ header {
 }
 .earn-title {
   font-family: var(--fd);
-  font-size: clamp(18px, 2.2vw, 20px);
+  font-size: clamp(15px, 2.2vw, 20px);
   text-transform: uppercase; color: #18142d;
   line-height: 2; margin-bottom: 16px;
 }
@@ -892,7 +892,7 @@ footer {
 /* ≤ 400px  */
 @media (max-width: 400px) {
   .brand-name { display: none; }
-  h1 { font-size: 23px; }
+  h1 { font-size: 16px; }
 }
 
 /* ── LOCAL ARTISTS ─────────────────────────────── */
