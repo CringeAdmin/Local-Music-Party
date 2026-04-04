@@ -16,7 +16,7 @@
   --px: clamp(20px, 6vw, 300px);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   background: var(--bg-dark);
@@ -26,17 +26,29 @@ body {
   overflow-x: hidden;
 }
 
+/* На мобиле заменяем горизонтальные AOS-анимации на вертикальные */
+@media (max-width: 768px) {
+  [data-aos="fade-left"],
+  [data-aos="fade-right"] {
+    transform: translate3d(0, 30px, 0) !important;
+  }
+  [data-aos="fade-left"].aos-animate,
+  [data-aos="fade-right"].aos-animate {
+    transform: translate3d(0, 0, 0) !important;
+  }
+}
+
 /* Typography */
 h1 {
   font-family: var(--fd);
-  font-size: clamp(14px, 3.8vw, 28px);
+  font-size: clamp(16px, 3.8vw, 28px);
   text-transform: uppercase;
   line-height: 2;
   margin-bottom: 4px;
 }
 h2 {
   font-family: var(--fd);
-  font-size: clamp(14px, 2.2vw, 24px);
+  font-size: clamp(16px, 2.8vw, 24px);
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 1.9;
@@ -106,10 +118,6 @@ h2 {
 }
 .blist.grad li::before {
   background: linear-gradient(135deg, #fe70f4, var(--accent));
-}
-
-.desktop-only { 
-  /* hide on mobile */ 
 }
 
 /* HEADER */
@@ -399,7 +407,7 @@ header {
 .slider-track {
   display: flex;
   gap: 16px;
-  padding: 0 var(--px) 24px;
+  padding: 0 0 24px;
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -449,26 +457,6 @@ header {
   line-height: 1.2;
 }
 
-.slider-dots {
-  display: none;
-}
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.dot:hover {
-  background: rgba(255, 255, 255, 0.35);
-}
-.dot.active {
-  background: var(--accent);
-  width: 24px;
-  border-radius: 999px;
-}
-
 /* EARN — purple BG, white card */
 .earn-section {
   background: var(--accent);
@@ -491,7 +479,7 @@ header {
 }
 .earn-title {
   font-family: var(--fd);
-  font-size: clamp(15px, 2.2vw, 20px);
+  font-size: clamp(18px, 2.2vw, 20px);
   text-transform: uppercase; color: #18142d;
   line-height: 2; margin-bottom: 16px;
 }
@@ -600,7 +588,6 @@ header {
 
 /* Smart text wrap on all headings and paragraphs */
 h1, h2, p { text-wrap: pretty; }
-
 
 /* FAQ */
 .faq-section {
@@ -813,30 +800,46 @@ footer {
   .for-inner,
   .for-inner.flipped { grid-template-columns: 1fr; }
 
-  /* Show phone mockups on mobile */
+  /* Show phone mockups on mobile — hide arrows, wrap as swipe slider */
   .desktop-only {
     display: flex !important;
     justify-content: center;
     margin-top: 24px;
   }
 
-  /* Bigger phone wrap for mobile */
+  /* Hide prev/next arrows on mobile — swipe instead */
+  .phone-arrow { display: none !important; }
+
+  /* Phone wrap becomes a swipe slider */
   .phone-wrap {
-    width: 240px;
-    height: 500px;
+    width: min(240px, 64vw);
+    height: min(500px, 133vw);
+    touch-action: pan-y;
+    cursor: grab;
+    position: relative;
+    overflow: hidden;
   }
+  .phone-wrap:active { cursor: grabbing; }
 
   /* What section phone col on mobile */
   .phone-col {
     margin-top: 24px;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
-  /* For sections: phone always on top */
+  /* For sections: phone below description on mobile */
   .for-inner .for-phone,
   .for-inner.flipped .for-phone {
-    order: -1;
+    order: 2;
     margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+  }
+  .for-inner .for-text,
+  .for-inner.flipped .for-text {
+    order: 1;
   }
 }
 
@@ -857,10 +860,10 @@ footer {
   }
   .hero-btns .btn {
     flex: 1;
-    min-width: 140px;
+    min-width: 130px;
     text-align: center;
-    font-size: 14px;
-    padding: 10px 16px;
+    font-size: 13px;
+    padding: 10px 12px;
   }
 
   .steps { grid-template-columns: 1fr; }
@@ -889,10 +892,43 @@ footer {
   .socials { justify-content: center; }
 }
 
-/* ≤ 400px  */
+/* ≤ 400px / iPhone SE и меньше */
 @media (max-width: 400px) {
+  :root { --px: 14px; }
   .brand-name { display: none; }
-  h1 { font-size: 16px; }
+
+  .hero-btns .btn {
+    min-width: 110px;
+    font-size: 12px;
+    padding: 9px 10px;
+  }
+
+  /* Slide width */
+  .slide { flex: 0 0 90vw; }
+
+  /* Phone mockup — чуть меньше на SE */
+  .phone-wrap {
+    width: min(200px, 56vw) !important;
+    height: min(420px, 117vw) !important;
+  }
+
+  /* for-pills wrap tighter */
+  .for-pill { font-size: 11px; padding: 4px 10px; }
+
+  /* FAQ question text */
+  .faq-q { font-size: 14px; padding: 16px 18px; }
+  .faq-ai { padding: 0 18px 18px; font-size: 14px; }
+
+  /* Nav */
+  .nav { padding: 8px var(--px); }
+  .logo { width: 36px; height: 36px; }
+
+  /* Hero btns stacked on very small */
+  .hero-btns { flex-direction: column; }
+  .hero-btns .btn { min-width: unset; width: 100%; }
+
+  /* Earn card */
+  .earn-card { grid-template-columns: 1fr; }
 }
 
 /* ── LOCAL ARTISTS ─────────────────────────────── */
@@ -900,6 +936,7 @@ footer {
   background: var(--bg-dark);
   padding: 80px 0;
   position: relative;
+  overflow: hidden;
 }
 .artists-section::before {
   content: '';
@@ -919,6 +956,8 @@ footer {
 }
 @media (max-width: 480px) {
   .artists-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .artist-name { font-size: 12px; letter-spacing: 1px; }
+  .artist-genre { font-size: 11px; }
 }
 
 .artist-card {
@@ -926,6 +965,7 @@ footer {
   flex-direction: column;
   gap: 12px;
   cursor: pointer;
+  min-width: 0; /* важно для grid — не даёт карточке растягиваться */
 }
 
 .artist-photo {
@@ -954,6 +994,9 @@ footer {
   text-transform: uppercase;
   color: #f4ecff;
   margin-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .artist-genre {
@@ -962,7 +1005,5 @@ footer {
   margin-top: -6px;
 }
 
-/* Smart text wrap */
-h1, h2, p { text-wrap: pretty; }
-
+/* Smart text wrap on all headings and paragraphs */
 h1, h2, p { text-wrap: pretty; }
